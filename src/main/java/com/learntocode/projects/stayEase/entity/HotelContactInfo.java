@@ -6,7 +6,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Embeddable // These properties can be embedded into another Table that table's columns
+@Embeddable // These properties can be embedded into another Table as that table's columns
+// It is embedded in Hotel Entity as contactInfo
 public class HotelContactInfo {
     private String address;
     private String phoneNumber;

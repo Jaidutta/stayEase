@@ -1,0 +1,18 @@
+Key Points:
+Spring Data JPA automatically creates queries from method names following these patterns:
+
+findBy + property names → SELECT queries
+countBy + property names → COUNT queries
+deleteBy + property names → DELETE queries
+existsBy + property names → EXISTS queries
+You can use:
+
+Any combination of entity properties
+Nested properties (hotel.city, room.type)
+Comparison operators (GreaterThan, LessThan, Between, Like)
+Logical operators (And, Or)
+Ordering (OrderBy)
+Pagination (Pageable)
+Only limitation: Very complex queries might need @Query annotation with custom JPQL or native SQL.
+
+So you're not limited to CRUD operations with all properties - you can create highly specific, efficient queries for any business need.
