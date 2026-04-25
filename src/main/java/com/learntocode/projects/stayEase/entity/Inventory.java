@@ -38,6 +38,9 @@ public class Inventory {
     @Column(nullable = false, columnDefinition = "INTEGER DEFAULT 0") // for setting default value
     private Integer bookedCount;
 
+    @Column(nullable = false, columnDefinition = "INTEGER DEFAULT 0") // for setting default value
+    private Integer reservedCount;
+
     @Column(nullable = false)
     private Integer totalCount;
 

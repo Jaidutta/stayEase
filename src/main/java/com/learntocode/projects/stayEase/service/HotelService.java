@@ -1,6 +1,7 @@
 package com.learntocode.projects.stayEase.service;
 
 import com.learntocode.projects.stayEase.dto.HotelDto;
+import com.learntocode.projects.stayEase.dto.HotelInfoDto;
 import com.learntocode.projects.stayEase.entity.Hotel;
 
 public interface HotelService {
@@ -14,4 +15,6 @@ public interface HotelService {
     void deleteHotelById(Long id);
 
     void activateHotelById(Long id);
+
+    HotelInfoDto getHotelInfo(Long hotelId);
 }
