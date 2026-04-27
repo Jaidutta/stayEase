@@ -10,6 +10,7 @@ import com.learntocode.projects.stayEase.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -90,6 +91,11 @@ public class BookingServiceImpl implements BookingService{
         Booking booking = bookingRepository.findById(bookingId).orElseThrow(() ->
                 new ResourceNotFoundException("Booking not found with id: "+bookingId));
 
+        User user = getCurrentUser();
+        if (!user.equals(booking.getUser())) {
+            throw new UnAuthorisedException("Booking does not belong to this user with id: "+user.getId());
+        }
+
         if (hasBookingExpired(booking)) {
             throw new IllegalStateException("Booking has already expired");
         }
@@ -115,8 +121,12 @@ public class BookingServiceImpl implements BookingService{
     }
 
     public User getCurrentUser() {
+        /*
         User user = new User();
         user.setId(1L); // TODO: REMOVE DUMMY USER
         return user;
+
+         */
+        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 }
